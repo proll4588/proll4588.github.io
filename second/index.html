@@ -13,7 +13,7 @@
             }
 
             body {
-                background-color: #000000;
+                background-color: #313131;
             }
 
             .d1,
@@ -24,8 +24,14 @@
                 color: white;
             }
 
+            .settings {
+                height: 300px;
+                width: 400px;
+            }
+
             /* #field,
-            #ney {
+            #ney,
+            .settings {
                 border: 4px double white;
             } */
 
@@ -33,42 +39,49 @@
                 margin: 0;
                 padding: 0;
             }
+
+            .fl {
+                display: flex;
+            }
         </style>
     </head>
     <body onload="setup();">
         <div class="fl">
             <canvas id="field" width="600" height="600"></canvas>
-            <canvas id="ney" width="400" height="300"></canvas>
+            <div class="fladd">
+                <div class="settings">
+                    <div class="d">
+                        <div class="d1">
+                            <input type="radio" name="fun" id="x" />
+                            <h5>x</h5>
+                        </div>
+
+                        <div class="d2">
+                            <input type="radio" name="fun" id="x^2" />
+                            <h5>x^2</h5>
+                        </div>
+
+                        <div class="d3">
+                            <input type="radio" name="fun" id="1/x" />
+                            <h5>1/x</h5>
+                        </div>
+
+                        <div class="d4">
+                            <input type="radio" name="fun" id="sin(x)" />
+                            <h5>sin(x)</h5>
+                        </div>
+
+                        <div class="d5">
+                            <button onclick="setFun();">Set fun</button>
+                            <button onclick="net.reset();">Reset Net</button>
+                        </div>
+                    </div>
+                </div>
+                <canvas id="ney" width="400" height="300"></canvas>
+            </div>
         </div>
 
         <script src="canvasDraw.js"></script>
         <script src="drawNey.js"></script>
-
-        <div class="d">
-            <div class="d1">
-                <input type="radio" name="fun" id="x" />
-                <h5>x</h5>
-            </div>
-
-            <div class="d2">
-                <input type="radio" name="fun" id="x^2" />
-                <h5>x^2</h5>
-            </div>
-
-            <div class="d3">
-                <input type="radio" name="fun" id="1/x" />
-                <h5>1/x</h5>
-            </div>
-
-            <div class="d4">
-                <input type="radio" name="fun" id="sin(x)" />
-                <h5>sin(x)</h5>
-            </div>
-
-            <div class="d5">
-                <button onclick="setFun();">Set fun</button>
-                <button onclick="net.reset();">Reset Net</button>
-            </div>
-        </div>
     </body>
 </html>

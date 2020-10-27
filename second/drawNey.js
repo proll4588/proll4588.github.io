@@ -2,7 +2,8 @@ var neyCanv = document.getElementById("ney");
 var neyDraw = neyCanv.getContext("2d");
 
 function drawNey() {
-    neyDraw.fillStyle = "rgb(0,0,0)";
+    neyDraw.lineWidth = 2;
+    neyDraw.fillStyle = "rgb(49,49,49)";
     neyDraw.strokeStyle = "rgb(0,0,0)";
     neyDraw.fillRect(0, 0, neyCanv.width, neyCanv.height);
 
@@ -39,13 +40,17 @@ function drawNey() {
                     if (color > 255) {
                         color = 255;
                     }
-                    neyDraw.strokeStyle = `rgb(0,0,${color})`;
+                    neyDraw.strokeStyle = `rgb(${color / 255 + 49},${
+                        (color / 255) * 124 + 49
+                    },${(color / 255) * 125 + 49})`;
                 } else {
                     var color = Math.round((255 / 3) * valW);
                     if (color > 255) {
                         color = 255;
                     }
-                    neyDraw.strokeStyle = `rgb(${color},${color},0)`;
+                    neyDraw.strokeStyle = `rgb(${(color / 255) * 191 + 49},${
+                        (color / 255) * 63 + 49
+                    },${color / 255 + 49})`;
                 }
 
                 drawLine(
@@ -62,7 +67,7 @@ function drawNey() {
     //Прорисовка нейронов
     for (var i = 0; i < posNey.length; i++) {
         for (var j = 0; j < posNey[i].length; j++) {
-            neyDraw.fillStyle = "rgb(0,0,0)";
+            neyDraw.fillStyle = "rgb(255,75,75)";
             drawCircul(
                 posNey[i][j][0],
                 posNey[i][j][1],
@@ -70,7 +75,7 @@ function drawNey() {
                 neyDraw
             );
 
-            neyDraw.strokeStyle = "rgb(200,200,200)";
+            neyDraw.strokeStyle = "rgb(49,49,49)";
             drawCircul(
                 posNey[i][j][0],
                 posNey[i][j][1],

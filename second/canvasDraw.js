@@ -18,7 +18,7 @@ var netCords = [];
 
 var net;
 
-var type = 3;
+var type = 0;
 var pastType = -1;
 
 function formedLeranData() {
@@ -114,8 +114,9 @@ function setFun() {
 }
 
 function drawFun() {
+    ctx.lineWidth = 4;
     ctx.strokeStyle = "rgb(255,0,0)";
-    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.fillStyle = "rgb(49,49,49)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     funCords = [];
@@ -166,6 +167,7 @@ function drawFun() {
             break;
     }
 
+    ctx.strokeStyle = "rgb(252,78,81)";
     for (var i = 0; i < funCords.length - 1; i++) {
         drawLine(
             funCords[i][0],
@@ -176,7 +178,6 @@ function drawFun() {
         );
     }
 
-    ctx.strokeStyle = "rgb(255,0,0)";
     funCords.forEach((cord) => {
         drawRect(cord[0] - 5, cord[1] - 5, 10, 10, ctx);
     });
@@ -185,7 +186,7 @@ function drawFun() {
 }
 
 function drawField() {
-    ctx.strokeStyle = "rgb(0,255,0)";
+    ctx.strokeStyle = "rgb(253,239,199)";
     netCords = [];
     funCords.forEach((cord) => {
         var c = net.count([cord[0] / weight]);
