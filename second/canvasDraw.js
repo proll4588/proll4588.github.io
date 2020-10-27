@@ -86,7 +86,7 @@ function formedLeranData() {
 }
 
 function setup() {
-    net = new NeyroNet([1, 3, 1]);
+    net = new NeyroNet([1, 5, 1]);
 
     initPixelsDraw(canvas, ctx);
 
