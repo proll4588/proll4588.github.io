@@ -18,7 +18,7 @@ var netCords = [];
 
 var net;
 
-var type = 0;
+var type = 3;
 var pastType = -1;
 
 function formedLeranData() {
@@ -65,6 +65,18 @@ function formedLeranData() {
             pastType = 2;
             break;
 
+        case 3:
+            for (var x = 0; x < weight; x += 5) {
+                var y =
+                    Math.round(Math.sin(x * 0.01) * 100) + canvas.height / 2;
+                if (y < hight) {
+                    inm.push([x / weight]);
+                    outm.push([y / hight]);
+                }
+            }
+            pastType = 3;
+            break;
+
         default:
             break;
     }
@@ -74,7 +86,7 @@ function formedLeranData() {
 }
 
 function setup() {
-    net = new NeyroNet([1, 5, 5, 1]);
+    net = new NeyroNet([1, 3, 1]);
 
     initPixelsDraw(canvas, ctx);
 
@@ -133,6 +145,17 @@ function drawFun() {
             formedLeranData();
             for (var x = 1; x < weight; x += 30) {
                 var y = Math.round((1 / x) * 5000);
+                if (y < hight) {
+                    funCords.push([x, y]);
+                }
+            }
+            break;
+
+        case 3:
+            formedLeranData();
+            for (var x = 0; x < weight; x += 10) {
+                var y =
+                    Math.round(Math.sin(x * 0.01) * 100) + canvas.height / 2;
                 if (y < hight) {
                     funCords.push([x, y]);
                 }
