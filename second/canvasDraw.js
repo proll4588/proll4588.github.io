@@ -13,7 +13,8 @@ var hight = canvas.height;
 //Координаты мыши
 var mouseX, mouseY;
 
-var mapField = [];
+var funCords = [];
+var netCords = [];
 
 var net;
 
@@ -74,12 +75,12 @@ function formedLeranData() {
 
 function setup() {
     net = new NeyroNet([1, 5, 5, 1]);
-    for (var i = 0; i < weight; i++) {
-        mapField[i] = [];
-        for (var j = 0; j < hight; j++) {
-            mapField[i][j] = [];
-        }
-    }
+    // for (var i = 0; i < weight; i++) {
+    //     mapField[i] = [];
+    //     for (var j = 0; j < hight; j++) {
+    //         mapField[i][j] = [];
+    //     }
+    // }
 
     initPixelsDraw(canvas, ctx);
 
@@ -107,39 +108,39 @@ function setFun() {
 }
 
 function drawFun() {
-    for (var i = 0; i < weight; i++) {
-        for (var j = 0; j < hight; j++) {
-            mapField[i][j] = [0, 0, 0];
-        }
-    }
+    ctx.strokeStyle = "rgb(255,0,0)";
+    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    funCords = [];
 
     switch (type) {
         case 0:
             formedLeranData();
-            for (var x = 0; x < weight; x++) {
+            for (var x = 0; x < weight; x += 30) {
                 var y = x;
                 if (y < hight) {
-                    mapField[x][y] = [255, 0, 0];
+                    funCords.push([x, y]);
                 }
             }
             break;
 
         case 1:
             formedLeranData();
-            for (var x = 0; x < weight; x++) {
+            for (var x = 0; x < weight; x += 30) {
                 var y = Math.round(x * x * 0.005);
                 if (y < hight) {
-                    mapField[x][y] = [255, 0, 0];
+                    funCords.push([x, y]);
                 }
             }
             break;
 
         case 2:
             formedLeranData();
-            for (var x = 1; x < weight; x++) {
+            for (var x = 1; x < weight; x += 30) {
                 var y = Math.round((1 / x) * 5000);
                 if (y < hight) {
-                    mapField[x][y] = [255, 0, 0];
+                    funCords.push([x, y]);
                 }
             }
             break;
@@ -148,20 +149,49 @@ function drawFun() {
             break;
     }
 
+    for (var i = 0; i < funCords.length - 1; i++) {
+        drawLine(
+            funCords[i][0],
+            funCords[i][1],
+            funCords[i + 1][0],
+            funCords[i + 1][1],
+            ctx
+        );
+    }
+
+    ctx.strokeStyle = "rgb(255,0,0)";
+    funCords.forEach((cord) => {
+        drawRect(cord[0] - 5, cord[1] - 5, 10, 10, ctx);
+    });
+
     drawField();
 }
 
 function drawField() {
-    for (var x = 1; x < weight; x++) {
-        var c = net.count([x / weight]);
-        if (c[0] * hight < hight) {
-            mapField[x][Math.round(c[0] * hight)] = [0, 255, 0];
-        }
+    ctx.strokeStyle = "rgb(0,255,0)";
+    netCords = [];
+    funCords.forEach((cord) => {
+        var c = net.count([cord[0] / weight]);
+        netCords.push([cord[0], Math.round(c[0] * hight)]);
+    });
+
+    for (var i = 0; i < netCords.length - 1; i++) {
+        drawLine(
+            netCords[i][0],
+            netCords[i][1],
+            netCords[i + 1][0],
+            netCords[i + 1][1],
+            ctx
+        );
     }
+
+    netCords.forEach((cord) => {
+        drawRect(cord[0] - 5, cord[1] - 5, 10, 10, ctx);
+    });
 
     //const start = new Date().getTime();
 
-    setPixel(mapField, ctx);
+    //setPixel(mapField, ctx);
 
     //const end = new Date().getTime();
     //console.log(`SecondWay: ${end - start}ms`);

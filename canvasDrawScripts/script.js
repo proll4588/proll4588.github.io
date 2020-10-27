@@ -24,6 +24,16 @@ function drawCircul(x, y, r, canvDraw) {
     canvDraw.closePath();
 }
 
+function drawRect(x, y, width, height, canvDraw) {
+    canvDraw.beginPath();
+
+    canvDraw.clearRect(x, y, width, height);
+    canvDraw.strokeRect(x, y, width, height);
+
+    canvDraw.stroke();
+    canvDraw.closePath();
+}
+
 //Попиксельная рисовка
 function setPixel(field, canvDraw) {
     for (var x = 0; x < field.length; x++) {
