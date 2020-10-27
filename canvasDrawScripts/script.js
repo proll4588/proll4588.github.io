@@ -15,12 +15,16 @@ function drawLine(x0, y0, x1, y1, canvDraw) {
 }
 
 //Рисование окружности
-function drawCircul(x, y, r, canvDraw) {
+function drawCircul(x, y, r, canvDraw, type = "fill") {
     canvDraw.beginPath();
 
     canvDraw.arc(x, y, r, 0, Math.PI * 2, true);
 
-    canvDraw.stroke();
+    if (type == "fill") {
+        canvDraw.fill();
+    } else if (type == "stroke") {
+        canvDraw.stroke();
+    }
     canvDraw.closePath();
 }
 

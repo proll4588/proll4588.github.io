@@ -75,12 +75,6 @@ function formedLeranData() {
 
 function setup() {
     net = new NeyroNet([1, 5, 5, 1]);
-    // for (var i = 0; i < weight; i++) {
-    //     mapField[i] = [];
-    //     for (var j = 0; j < hight; j++) {
-    //         mapField[i][j] = [];
-    //     }
-    // }
 
     initPixelsDraw(canvas, ctx);
 
@@ -188,11 +182,4 @@ function drawField() {
     netCords.forEach((cord) => {
         drawRect(cord[0] - 5, cord[1] - 5, 10, 10, ctx);
     });
-
-    //const start = new Date().getTime();
-
-    //setPixel(mapField, ctx);
-
-    //const end = new Date().getTime();
-    //console.log(`SecondWay: ${end - start}ms`);
 }
