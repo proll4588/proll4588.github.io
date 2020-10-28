@@ -16,10 +16,7 @@
                 background-color: #313131;
             }
 
-            .d1,
-            .d2,
-            .d3,
-            .d4 {
+            .d1 {
                 display: flex;
                 color: white;
             }
@@ -34,6 +31,19 @@
             .settings {
                 border: 4px double white;
             } */
+
+            .textSettings {
+                width: 30px;
+                background-color: #313131;
+                border: 2px solid #f07031;
+                border-radius: 5px;
+                color: white;
+                text-align: center;
+            }
+
+            .checkSet {
+                background-color: #f07031;
+            }
 
             h5 {
                 margin: 0;
@@ -52,26 +62,87 @@
                 <div class="settings">
                     <div class="d">
                         <div class="d1">
-                            <input type="radio" name="fun" id="x" />
-                            <h5>x</h5>
+                            <input
+                                type="radio"
+                                name="fun"
+                                id="x"
+                                calss="checkSet"
+                            />
+                            <input
+                                type="text"
+                                id="parXLine"
+                                class="textSettings"
+                                value="1"
+                            />
+                            <h5>x +</h5>
+                            <input
+                                type="text"
+                                id="parXLine1"
+                                class="textSettings"
+                                value="0"
+                            />
                         </div>
 
-                        <div class="d2">
-                            <input type="radio" name="fun" id="x^2" />
-                            <h5>x^2</h5>
+                        <div class="d1">
+                            <input
+                                type="radio"
+                                name="fun"
+                                id="x^2"
+                                calss="checkSet"
+                            />
+                            <input
+                                type="text"
+                                id="parX1"
+                                class="textSettings"
+                                value="-0.005"
+                            />
+                            <h5>x^2 +</h5>
+                            <input
+                                type="text"
+                                id="parX2"
+                                class="textSettings"
+                                value="3"
+                            />
+                            <h5>x +</h5>
+                            <input
+                                type="text"
+                                id="parX3"
+                                class="textSettings"
+                                value="100"
+                            />
                         </div>
 
-                        <div class="d3">
-                            <input type="radio" name="fun" id="1/x" />
+                        <div class="d1">
+                            <input
+                                type="radio"
+                                name="fun"
+                                id="1/x"
+                                calss="checkSet"
+                            />
                             <h5>1/x</h5>
                         </div>
 
-                        <div class="d4">
-                            <input type="radio" name="fun" id="sin(x)" />
+                        <div class="d1">
+                            <input
+                                type="radio"
+                                name="fun"
+                                id="sin(x)"
+                                calss="checkSet"
+                            />
                             <h5>sin(x)</h5>
                         </div>
 
-                        <div class="d5">
+                        <div class="d1">
+                            <h5>Step</h5>
+                            <input
+                                type="text"
+                                class="textSettings"
+                                id="step"
+                                value="30"
+                            />
+                        </div>
+
+                        <div class="d1">
                             <button onclick="setFun();">Set fun</button>
                             <button onclick="net.reset();">Reset Net</button>
                         </div>

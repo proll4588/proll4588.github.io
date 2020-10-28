@@ -21,10 +21,12 @@ var net;
 var type = 0;
 var pastType = -1;
 
+var func;
+
 function formedLeranData() {
-    if (pastType == type) {
-        return;
-    }
+    // if (pastType == type) {
+    //     return;
+    // }
 
     net.reset();
 
@@ -34,7 +36,9 @@ function formedLeranData() {
     switch (type) {
         case 0:
             for (var x = 0; x < weight; x += 10) {
-                var y = x;
+                var y =
+                    x * Number(document.getElementById("parXLine").value) +
+                    Number(document.getElementById("parXLine1").value);
                 if (y < hight) {
                     inm.push([x / weight]);
                     outm.push([y / hight]);
@@ -45,7 +49,12 @@ function formedLeranData() {
 
         case 1:
             for (var x = 0; x < weight; x += 10) {
-                var y = Math.round(x * x * 0.005);
+                var y = Math.round(
+                    Math.pow(x, 2) *
+                        Number(document.getElementById("parX1").value) +
+                        Number(document.getElementById("parX2").value) * x +
+                        Number(document.getElementById("parX3").value)
+                );
                 if (y < hight) {
                     inm.push([x / weight]);
                     outm.push([y / hight]);
@@ -111,6 +120,25 @@ function setFun() {
             type = i;
         }
     }
+
+    formedLeranData();
+
+    // switch (type) {
+    //     case 0:
+    //         func = (x) => {
+    //             return x * document.getElementById("xText").value;
+    //         };
+    //         break;
+
+    //     case 1:
+    //         func = (x) => {
+    //             return x * document.getElementById("xText").value;
+    //         };
+    //         break;
+
+    //     default:
+    //         break;
+    // }
 }
 
 function drawFun() {
@@ -121,11 +149,18 @@ function drawFun() {
 
     funCords = [];
 
+    var step = Number(document.getElementById("step").value);
+    if (step <= 0) {
+        step = 1;
+    }
+    //console.log(step);
+
     switch (type) {
         case 0:
-            formedLeranData();
-            for (var x = 0; x < weight; x += 30) {
-                var y = x;
+            for (var x = 0; x < weight; x += step) {
+                var y =
+                    x * Number(document.getElementById("parXLine").value) +
+                    Number(document.getElementById("parXLine1").value);
                 if (y < hight) {
                     funCords.push([x, y]);
                 }
@@ -133,9 +168,13 @@ function drawFun() {
             break;
 
         case 1:
-            formedLeranData();
-            for (var x = 0; x < weight; x += 30) {
-                var y = Math.round(x * x * 0.005);
+            for (var x = 0; x < weight; x += step) {
+                var y = Math.round(
+                    Math.pow(x, 2) *
+                        Number(document.getElementById("parX1").value) +
+                        Number(document.getElementById("parX2").value) * x +
+                        Number(document.getElementById("parX3").value)
+                );
                 if (y < hight) {
                     funCords.push([x, y]);
                 }
@@ -143,8 +182,7 @@ function drawFun() {
             break;
 
         case 2:
-            formedLeranData();
-            for (var x = 1; x < weight; x += 30) {
+            for (var x = 1; x < weight; x += step) {
                 var y = Math.round((1 / x) * 5000);
                 if (y < hight) {
                     funCords.push([x, y]);
@@ -153,8 +191,7 @@ function drawFun() {
             break;
 
         case 3:
-            formedLeranData();
-            for (var x = 0; x < weight; x += 10) {
+            for (var x = 0; x < weight; x += step) {
                 var y =
                     Math.round(Math.sin(x * 0.01) * 100) + canvas.height / 2;
                 if (y < hight) {
