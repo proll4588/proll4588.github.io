@@ -51,6 +51,7 @@ function formedLeranData() {
             for (var x = 0; x < weight; x += 10) {
                 var y = Math.round(
                     Math.pow(x, 2) *
+                        0.005 *
                         Number(document.getElementById("parX1").value) +
                         Number(document.getElementById("parX2").value) * x +
                         Number(document.getElementById("parX3").value)
@@ -171,6 +172,7 @@ function drawFun() {
             for (var x = 0; x < weight; x += step) {
                 var y = Math.round(
                     Math.pow(x, 2) *
+                        0.005 *
                         Number(document.getElementById("parX1").value) +
                         Number(document.getElementById("parX2").value) * x +
                         Number(document.getElementById("parX3").value)
