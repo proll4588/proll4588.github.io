@@ -21,10 +21,12 @@ var netCords = [];
 
 var net;
 
-var type = 0;
+var type = 2;
 var pastType = -1;
 
 var func;
+
+var f = true;
 
 function formedLeranData() {
     // if (pastType == type) {
@@ -68,11 +70,12 @@ function formedLeranData() {
             break;
 
         case 2:
-            for (var x = 1; x < width; x += 10) {
-                var y = Math.round((1 / x) * 5000);
-                if (y < height) {
-                    inm.push([x / width]);
-                    outm.push([y / height]);
+            for (var x = -halfWidth; x < halfWidth; x += 10) {
+                if (x == 0) continue;
+                var y = Math.round(5000 / x);
+                if (y + halfWidth < height) {
+                    inm.push([(x + halfWidth) / width]);
+                    outm.push([(y + halfHeight) / height]);
                 }
             }
             pastType = 2;
@@ -110,6 +113,8 @@ function setup() {
 
 function draw() {
     net.learn(1, inputLearn, outputLearn);
+
+    ctx.fillStyle = "rgb(49,49,49)";
     ctx.fillRect(0, 0, width, height);
     drawCords();
     drawFun();
@@ -171,12 +176,14 @@ function drawFun() {
             break;
 
         case 2:
-            for (var x = 1; x < width; x += step) {
-                var y = Math.round((1 / x) * 5000);
-                if (y < height) {
-                    funCords.push([x, y]);
+            for (var x = -halfWidth; x < halfWidth; x += step) {
+                if (x == 0) continue;
+                var y = Math.round(5000 / x);
+                if (y + halfHeight < height && y + halfHeight > 0) {
+                    funCords.push([x + halfWidth, y + halfHeight]);
                 }
             }
+            f = false;
             break;
 
         case 3:
@@ -235,7 +242,7 @@ function drawField() {
 }
 
 function drawCords() {
-    ctx.strokeStyle = "rgb(252,78,81)";
+    ctx.strokeStyle = "rgb(100,49,49)";
     drawLine(halfWidth, 0, halfWidth, height, ctx);
     drawLine(0, halfHeight, width, halfHeight, ctx);
 }
