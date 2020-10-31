@@ -7,8 +7,11 @@ var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");
 
 //Размеры окна
-var weight = canvas.width;
-var hight = canvas.height;
+var width = canvas.width;
+var height = canvas.height;
+
+var halfWidth = Math.round(width / 2);
+var halfHeight = Math.round(height / 2);
 
 //Координаты мыши
 var mouseX, mouseY;
@@ -35,53 +38,53 @@ function formedLeranData() {
 
     switch (type) {
         case 0:
-            for (var x = 0; x < weight; x += 10) {
+            for (var x = -halfWidth; x < halfWidth; x += 10) {
                 var y =
                     x * Number(document.getElementById("parXLine").value) +
                     Number(document.getElementById("parXLine1").value);
-                if (y < hight) {
-                    inm.push([x / weight]);
-                    outm.push([y / hight]);
+                if (y + halfHeight < height) {
+                    inm.push([(x + halfWidth) / width]);
+                    outm.push([(y + halfHeight) / height]);
                 }
             }
             pastType = 0;
             break;
 
         case 1:
-            for (var x = 0; x < weight; x += 10) {
+            for (var x = -halfWidth; x < halfWidth; x += 10) {
                 var y = Math.round(
                     Math.pow(x, 2) *
-                        0.005 *
+                        0.01 *
                         Number(document.getElementById("parX1").value) +
                         Number(document.getElementById("parX2").value) * x +
                         Number(document.getElementById("parX3").value)
                 );
-                if (y < hight) {
-                    inm.push([x / weight]);
-                    outm.push([y / hight]);
+                if (y + halfHeight < height && y + halfHeight >= 0) {
+                    inm.push([(x + halfWidth) / width]);
+                    outm.push([(y + halfHeight) / height]);
                 }
             }
             pastType = 1;
             break;
 
         case 2:
-            for (var x = 1; x < weight; x += 10) {
+            for (var x = 1; x < width; x += 10) {
                 var y = Math.round((1 / x) * 5000);
-                if (y < hight) {
-                    inm.push([x / weight]);
-                    outm.push([y / hight]);
+                if (y < height) {
+                    inm.push([x / width]);
+                    outm.push([y / height]);
                 }
             }
             pastType = 2;
             break;
 
         case 3:
-            for (var x = 0; x < weight; x += 5) {
+            for (var x = 0; x < width; x += 5) {
                 var y =
                     Math.round(Math.sin(x * 0.01) * 100) + canvas.height / 2;
-                if (y < hight) {
-                    inm.push([x / weight]);
-                    outm.push([y / hight]);
+                if (y < height) {
+                    inm.push([x / width]);
+                    outm.push([y / height]);
                 }
             }
             pastType = 3;
@@ -107,6 +110,8 @@ function setup() {
 
 function draw() {
     net.learn(1, inputLearn, outputLearn);
+    ctx.fillRect(0, 0, width, height);
+    drawCords();
     drawFun();
     drawNey();
 
@@ -123,30 +128,12 @@ function setFun() {
     }
 
     formedLeranData();
-
-    // switch (type) {
-    //     case 0:
-    //         func = (x) => {
-    //             return x * document.getElementById("xText").value;
-    //         };
-    //         break;
-
-    //     case 1:
-    //         func = (x) => {
-    //             return x * document.getElementById("xText").value;
-    //         };
-    //         break;
-
-    //     default:
-    //         break;
-    // }
 }
 
 function drawFun() {
     ctx.lineWidth = 4;
     ctx.strokeStyle = "rgb(255,0,0)";
     ctx.fillStyle = "rgb(49,49,49)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     funCords = [];
 
@@ -158,45 +145,45 @@ function drawFun() {
 
     switch (type) {
         case 0:
-            for (var x = 0; x < weight; x += step) {
+            for (var x = -halfWidth; x < halfWidth; x += step) {
                 var y =
                     x * Number(document.getElementById("parXLine").value) +
                     Number(document.getElementById("parXLine1").value);
-                if (y < hight) {
-                    funCords.push([x, y]);
+                if (y + halfHeight < height) {
+                    funCords.push([x + halfWidth, y + halfHeight]);
                 }
             }
             break;
 
         case 1:
-            for (var x = 0; x < weight; x += step) {
+            for (var x = -halfWidth; x < halfWidth; x += step) {
                 var y = Math.round(
                     Math.pow(x, 2) *
-                        0.005 *
+                        0.01 *
                         Number(document.getElementById("parX1").value) +
                         Number(document.getElementById("parX2").value) * x +
                         Number(document.getElementById("parX3").value)
                 );
-                if (y < hight) {
-                    funCords.push([x, y]);
+                if (y + halfHeight < height && y + halfHeight >= 0) {
+                    funCords.push([x + halfWidth, y + halfHeight]);
                 }
             }
             break;
 
         case 2:
-            for (var x = 1; x < weight; x += step) {
+            for (var x = 1; x < width; x += step) {
                 var y = Math.round((1 / x) * 5000);
-                if (y < hight) {
+                if (y < height) {
                     funCords.push([x, y]);
                 }
             }
             break;
 
         case 3:
-            for (var x = 0; x < weight; x += step) {
+            for (var x = 0; x < width; x += step) {
                 var y =
                     Math.round(Math.sin(x * 0.01) * 100) + canvas.height / 2;
-                if (y < hight) {
+                if (y < height) {
                     funCords.push([x, y]);
                 }
             }
@@ -228,8 +215,8 @@ function drawField() {
     ctx.strokeStyle = "rgb(253,239,199)";
     netCords = [];
     funCords.forEach((cord) => {
-        var c = net.count([cord[0] / weight]);
-        netCords.push([cord[0], Math.round(c[0] * hight)]);
+        var c = net.count([cord[0] / width]);
+        netCords.push([cord[0], Math.round(c[0] * height)]);
     });
 
     for (var i = 0; i < netCords.length - 1; i++) {
@@ -245,4 +232,10 @@ function drawField() {
     netCords.forEach((cord) => {
         drawRect(cord[0] - 5, cord[1] - 5, 10, 10, ctx);
     });
+}
+
+function drawCords() {
+    ctx.strokeStyle = "rgb(252,78,81)";
+    drawLine(halfWidth, 0, halfWidth, height, ctx);
+    drawLine(0, halfHeight, width, halfHeight, ctx);
 }
