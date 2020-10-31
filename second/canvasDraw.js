@@ -21,7 +21,7 @@ var netCords = [];
 
 var net;
 
-var type = 3;
+var type = 0;
 var pastType = -1;
 
 var func;
