@@ -21,19 +21,19 @@ var netCords = [];
 
 var net;
 
-var type = 2;
+var type = 3;
 var pastType = -1;
 
 var func;
 
-var f = true;
+//var f = true;
 
 function formedLeranData() {
     // if (pastType == type) {
     //     return;
     // }
 
-    net.reset();
+    //net.reset();
 
     var inm = [];
     var outm = [];
@@ -82,12 +82,11 @@ function formedLeranData() {
             break;
 
         case 3:
-            for (var x = 0; x < width; x += 5) {
-                var y =
-                    Math.round(Math.sin(x * 0.01) * 100) + canvas.height / 2;
-                if (y < height) {
-                    inm.push([x / width]);
-                    outm.push([y / height]);
+            for (var x = -halfWidth; x < halfWidth; x += 5) {
+                var y = Math.round(Math.sin(x * 0.01) * 100);
+                if (y + halfHeight < height) {
+                    inm.push([(x + halfWidth) / width]);
+                    outm.push([(y + halfHeight) / height]);
                 }
             }
             pastType = 3;
@@ -132,7 +131,8 @@ function setFun() {
         }
     }
 
-    formedLeranData();
+    //formedLeranData();
+    net.reset();
 }
 
 function drawFun() {
@@ -146,6 +146,8 @@ function drawFun() {
     if (step <= 0) {
         step = 1;
     }
+
+    formedLeranData();
     //console.log(step);
 
     switch (type) {
@@ -183,15 +185,13 @@ function drawFun() {
                     funCords.push([x + halfWidth, y + halfHeight]);
                 }
             }
-            f = false;
             break;
 
         case 3:
-            for (var x = 0; x < width; x += step) {
-                var y =
-                    Math.round(Math.sin(x * 0.01) * 100) + canvas.height / 2;
-                if (y < height) {
-                    funCords.push([x, y]);
+            for (var x = -halfWidth; x < halfWidth; x += step) {
+                var y = Math.round(Math.sin(x * 0.01) * 100);
+                if (y + halfHeight < height && y + halfHeight > 0) {
+                    funCords.push([x + halfWidth, y + halfHeight]);
                 }
             }
             break;
