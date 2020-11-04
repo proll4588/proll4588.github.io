@@ -58,6 +58,13 @@
         </style>
     </head>
     <body onload="setup();">
+        <script>
+            document.addEventListener("mousedown", (event) => setPoint());
+            document.addEventListener("mousemove", (event) => {
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+            });
+        </script>
         <div class="fl">
             <canvas id="field" width="600" height="600"></canvas>
             <div class="fladd">
@@ -135,6 +142,16 @@
                         </div>
 
                         <div class="d1">
+                            <input
+                                type="radio"
+                                name="fun"
+                                id="self"
+                                class="checkSet"
+                            />
+                            <h4>Self</h4>
+                        </div>
+
+                        <div class="d1">
                             <h4>Step</h4>
                             <input
                                 type="text"
@@ -147,6 +164,9 @@
                         <div class="d1">
                             <button onclick="setFun();">Set fun</button>
                             <button onclick="net.reset();">Reset Net</button>
+                            <button onclick="resetPoints();">
+                                Reset Points
+                            </button>
                         </div>
                     </div>
                 </div>

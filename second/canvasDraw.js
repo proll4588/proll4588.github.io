@@ -2,6 +2,9 @@
 var inputLearn = [];
 var outputLearn = [];
 
+var pointsOnMap = [];
+
+var mouseX, mouseY;
 //Окно для рислвание
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");
@@ -86,6 +89,13 @@ function formedLeranData() {
             pastType = 3;
             break;
 
+        case 4:
+            for (var i = 0; i < pointsOnMap.length; i++) {
+                inm.push([pointsOnMap[i][0] / width]);
+                outm.push([pointsOnMap[i][1] / height]);
+            }
+            break;
+
         default:
             break;
     }
@@ -95,7 +105,7 @@ function formedLeranData() {
 }
 
 function setup() {
-    net = new NeyroNet([1, 5, 1]);
+    net = new NeyroNet([1, 5, 5, 1]);
 
     initPixelsDraw(canvas, ctx);
 
@@ -190,6 +200,12 @@ function drawFun() {
             }
             break;
 
+        case 4:
+            for (var i = 0; i < pointsOnMap.length; i++) {
+                funCords[i] = pointsOnMap[i];
+            }
+            break;
+
         default:
             break;
     }
@@ -239,4 +255,14 @@ function drawCords() {
     ctx.strokeStyle = "rgb(100,49,49)";
     drawLine(halfWidth, 0, halfWidth, height, ctx);
     drawLine(0, halfHeight, width, halfHeight, ctx);
+}
+
+function setPoint() {
+    if (mouseX <= width && mouseY <= height) {
+        pointsOnMap.push([mouseX, mouseY]);
+    }
+}
+
+function resetPoints() {
+    pointsOnMap = [];
 }
