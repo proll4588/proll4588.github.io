@@ -29,12 +29,6 @@ var func;
 //var f = true;
 
 function formedLeranData() {
-    // if (pastType == type) {
-    //     return;
-    // }
-
-    //net.reset();
-
     var inm = [];
     var outm = [];
 
