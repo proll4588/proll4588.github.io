@@ -9,6 +9,9 @@ var mouseX, mouseY;
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");
 
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
+
 //Размеры окна
 var width = canvas.width;
 var height = canvas.height;
@@ -31,6 +34,16 @@ var func;
 
 //var f = true;
 
+function setup() {
+    net = new NeyroNet([1, 5, 1]);
+
+    initPixelsDraw(canvas, ctx);
+
+    formedLeranData();
+
+    window.requestAnimationFrame(draw);
+}
+
 function formedLeranData() {
     var inm = [];
     var outm = [];
@@ -52,9 +65,7 @@ function formedLeranData() {
         case 1:
             for (var x = -halfWidth; x < halfWidth; x += 10) {
                 var y = Math.round(
-                    Math.pow(x, 2) *
-                        0.01 *
-                        Number(document.getElementById("parX1").value) +
+                    Math.pow(x, 2) * 0.01 * Number(document.getElementById("parX1").value) +
                         Number(document.getElementById("parX2").value) * x +
                         Number(document.getElementById("parX3").value)
                 );
@@ -104,21 +115,10 @@ function formedLeranData() {
     outputLearn = outm;
 }
 
-function setup() {
-    net = new NeyroNet([1, 5, 5, 1]);
-
-    initPixelsDraw(canvas, ctx);
-
-    formedLeranData();
-
-    window.requestAnimationFrame(draw);
-}
-
 function draw() {
     net.learn(1, inputLearn, outputLearn);
+    ctx.clearRect(0, 0, width, height);
 
-    ctx.fillStyle = "rgb(49,49,49)";
-    ctx.fillRect(0, 0, width, height);
     drawCords();
     drawFun();
     drawNey();
@@ -160,7 +160,7 @@ function drawFun() {
                 var y =
                     x * Number(document.getElementById("parXLine").value) +
                     Number(document.getElementById("parXLine1").value);
-                if (y + halfHeight < height) {
+                if (y + halfHeight < height && y + halfHeight >= 0) {
                     funCords.push([x + halfWidth, y + halfHeight]);
                 }
             }
@@ -169,9 +169,7 @@ function drawFun() {
         case 1:
             for (var x = -halfWidth; x < halfWidth; x += step) {
                 var y = Math.round(
-                    Math.pow(x, 2) *
-                        0.01 *
-                        Number(document.getElementById("parX1").value) +
+                    Math.pow(x, 2) * 0.01 * Number(document.getElementById("parX1").value) +
                         Number(document.getElementById("parX2").value) * x +
                         Number(document.getElementById("parX3").value)
                 );
@@ -212,13 +210,7 @@ function drawFun() {
 
     ctx.strokeStyle = "rgb(252,78,81)";
     for (var i = 0; i < funCords.length - 1; i++) {
-        drawLine(
-            funCords[i][0],
-            funCords[i][1],
-            funCords[i + 1][0],
-            funCords[i + 1][1],
-            ctx
-        );
+        drawLine(funCords[i][0], funCords[i][1], funCords[i + 1][0], funCords[i + 1][1], ctx);
     }
 
     funCords.forEach((cord) => {
@@ -237,13 +229,7 @@ function drawField() {
     });
 
     for (var i = 0; i < netCords.length - 1; i++) {
-        drawLine(
-            netCords[i][0],
-            netCords[i][1],
-            netCords[i + 1][0],
-            netCords[i + 1][1],
-            ctx
-        );
+        drawLine(netCords[i][0], netCords[i][1], netCords[i + 1][0], netCords[i + 1][1], ctx);
     }
 
     netCords.forEach((cord) => {

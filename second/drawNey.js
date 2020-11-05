@@ -3,9 +3,9 @@ var neyDraw = neyCanv.getContext("2d");
 
 function drawNey() {
     neyDraw.lineWidth = 2;
-    neyDraw.fillStyle = "rgb(49,49,49)";
+    neyDraw.fillStyle = "rgba(49,49,49)";
     neyDraw.strokeStyle = "rgb(0,0,0)";
-    neyDraw.fillRect(0, 0, neyCanv.width, neyCanv.height);
+    neyDraw.clearRect(0, 0, neyCanv.width, neyCanv.height);
 
     var posNey = [];
 
