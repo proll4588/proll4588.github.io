@@ -6,7 +6,7 @@ class NeyroNet {
         this.w = [];
         this.error = [];
 
-        this.cofStudy = 0.4;
+        this.cofStudy = 0.7;
 
         this.init();
     }
@@ -55,8 +55,7 @@ class NeyroNet {
                 for (var k = 0; k < this.ney[i].length; k++) {
                     this.ney[i + 1][j] += this.ney[i][k] * this.w[i][k][j];
                 }
-                this.ney[i + 1][j] =
-                    1 / (1 + Math.exp(-1 * this.ney[i + 1][j]));
+                this.ney[i + 1][j] = 1 / (1 + Math.exp(-1 * this.ney[i + 1][j]));
             }
         }
 
@@ -65,8 +64,7 @@ class NeyroNet {
 
     findErrorOut(output) {
         for (var i = 0; i < this.ney[this.ney.length - 1].length; i++) {
-            this.error[this.ney.length - 1][i] =
-                output[i] - this.ney[this.ney.length - 1][i];
+            this.error[this.ney.length - 1][i] = output[i] - this.ney[this.ney.length - 1][i];
         }
     }
 

@@ -4,7 +4,6 @@ var outputLearn = [];
 
 var pointsOnMap = [];
 
-var mouseX, mouseY;
 //Окно для рислвание
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");
@@ -28,14 +27,9 @@ var netCords = [];
 var net;
 
 var type = 0;
-var pastType = -1;
-
-var func;
-
-//var f = true;
 
 function setup() {
-    net = new NeyroNet([1, 5, 1]);
+    net = new NeyroNet([1, 3, 1]);
 
     initPixelsDraw(canvas, ctx);
 
@@ -59,7 +53,6 @@ function formedLeranData() {
                     outm.push([(y + halfHeight) / height]);
                 }
             }
-            pastType = 0;
             break;
 
         case 1:
@@ -74,7 +67,6 @@ function formedLeranData() {
                     outm.push([(y + halfHeight) / height]);
                 }
             }
-            pastType = 1;
             break;
 
         case 2:
@@ -86,7 +78,6 @@ function formedLeranData() {
                     outm.push([(y + halfHeight) / height]);
                 }
             }
-            pastType = 2;
             break;
 
         case 3:
@@ -97,7 +88,6 @@ function formedLeranData() {
                     outm.push([(y + halfHeight) / height]);
                 }
             }
-            pastType = 3;
             break;
 
         case 4:
