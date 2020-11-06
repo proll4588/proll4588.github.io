@@ -1,18 +1,19 @@
 class NeyroNet {
+    //Конструктор
     constructor(neyConf) {
-        this.neyConf = neyConf;
+        this.neyConf = neyConf; //Конфигурация сети
 
-        this.ney = [];
-        this.w = [];
-        this.error = [];
+        this.ney = []; //Значение нейронов
+        this.w = []; //Веса сети
+        this.error = []; //Ошибки нейронов
 
-        this.cofStudy = 0.7;
+        this.cofStudy = 0.7; //Коэфицент обучения
 
         this.init();
     }
 
+    //Инициализация
     init() {
-        //ney, error
         for (var i = 0; i < this.neyConf.length; i++) {
             this.ney[i] = [];
             this.error[i] = [];
@@ -25,7 +26,6 @@ class NeyroNet {
             }
         }
 
-        //w
         for (var i = 0; i < this.neyConf.length - 1; i++) {
             this.w[i] = [];
             for (var j = 0; j < this.neyConf[i] + 1; j++) {
@@ -37,6 +37,7 @@ class NeyroNet {
         }
     }
 
+    //Расчёт сети
     count(input) {
         for (var i = 0; i < input.length; i++) {
             this.ney[0][i] = input[i];
@@ -62,12 +63,14 @@ class NeyroNet {
         return this.ney[this.ney.length - 1];
     }
 
+    //Нахождение ошибок выходгых нейронов
     findErrorOut(output) {
         for (var i = 0; i < this.ney[this.ney.length - 1].length; i++) {
             this.error[this.ney.length - 1][i] = output[i] - this.ney[this.ney.length - 1][i];
         }
     }
 
+    //Нахождение ошибок нейронов
     findError(output) {
         this.findErrorOut(output);
         for (var i = this.ney.length - 2; i >= 1; i--) {
@@ -88,6 +91,7 @@ class NeyroNet {
         }
     }
 
+    //Изменение весов
     updateW() {
         for (var i = 0; i < this.ney.length - 1; i++) {
             for (var j = 0; j < this.ney[i].length; j++) {
@@ -111,6 +115,7 @@ class NeyroNet {
         }
     }
 
+    //Обучение
     learn(val, input, output) {
         for (var i = 0; i < val; i++) {
             for (var j = 0; j < input.length; j++) {
@@ -121,6 +126,7 @@ class NeyroNet {
         }
     }
 
+    //Сброс значений сети
     reset() {
         for (var i = 0; i < this.neyConf.length - 1; i++) {
             for (var j = 0; j < this.neyConf[i] + 1; j++) {
@@ -131,7 +137,12 @@ class NeyroNet {
         }
     }
 
-    getNey() {
-        return this.ney;
+    //Полный сброс сети
+    fullReset() {
+        this.ney = [];
+        this.w = [];
+        this.error = [];
+
+        this.init();
     }
 }

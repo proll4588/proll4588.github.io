@@ -18,13 +18,18 @@ body {
     width: 400px;
 }
 
-.textSettings {
+.textSettings,
+.configSettings {
     width: 30px;
     background-color: #313131;
     border: 2px solid #f07031;
     border-radius: 5px;
     color: white;
     text-align: center;
+}
+
+.configSettings {
+    width: 50px;
 }
 
 .checkSet {

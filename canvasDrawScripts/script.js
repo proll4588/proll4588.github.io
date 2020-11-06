@@ -28,6 +28,7 @@ function drawCircul(x, y, r, canvDraw, type = "fill") {
     canvDraw.closePath();
 }
 
+//Рисование прямоугольников
 function drawRect(x, y, width, height, canvDraw) {
     canvDraw.beginPath();
 
@@ -53,6 +54,7 @@ function setPixel(field, canvDraw) {
     imageData.data.set(buf8);
     canvDraw.putImageData(imageData, 0, 0);
 }
+
 //Инициализация попиксильной рисовки
 function initPixelsDraw(canv, canvDraw) {
     imageData = canvDraw.getImageData(0, 0, canv.width, canv.height);

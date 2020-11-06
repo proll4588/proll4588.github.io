@@ -28,14 +28,29 @@ var net;
 
 var type = 0;
 
+var startConf = [1, 3, 1];
+
 function setup() {
-    net = new NeyroNet([1, 3, 1]);
+    net = new NeyroNet(startConf);
 
     initPixelsDraw(canvas, ctx);
 
     formedLeranData();
 
     window.requestAnimationFrame(draw);
+}
+
+function resetNey() {
+    var conf = eval(document.getElementById("config").value);
+    var newConf = [startConf[0]];
+
+    conf.forEach((el) => {
+        newConf.push(el);
+    });
+    newConf.push(startConf[startConf.length - 1]);
+
+    net.neyConf = newConf;
+    net.fullReset();
 }
 
 function formedLeranData() {
