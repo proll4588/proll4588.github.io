@@ -244,8 +244,13 @@ function drawField() {
 
 function drawCords() {
     ctx.strokeStyle = "rgb(100,49,49)";
+    ctx.fillStyle = "rgb(200,49,49)";
     drawLine(halfWidth, 0, halfWidth, height, ctx);
     drawLine(0, halfHeight, width, halfHeight, ctx);
+
+    ctx.font = "30px Times New Roman";
+    ctx.fillText("y", halfWidth + 5, height - 10);
+    ctx.fillText("x", width - 20, halfHeight + 25);
 }
 
 function setPoint() {

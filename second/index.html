@@ -18,40 +18,43 @@
     <body onload="setup();">
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <div class="void"></div>
             <div class="settings">
-                <div class="d">
-                    <div class="d1">
-                        <input type="radio" name="fun" id="x" class="checkSet" />
-                        <input type="text" id="parXLine" class="textSettings" value="1" />
-                        <h4>x +</h4>
-                        <input type="text" id="parXLine1" class="textSettings" value="0" />
-                    </div>
+                <div class="settingsFun set">
+                    <div class="d">
+                        <div class="d1">
+                            <input type="radio" name="fun" id="x" class="checkSet" />
+                            <input type="text" id="parXLine" class="textSettings" value="1" />
+                            <h4>x +</h4>
+                            <input type="text" id="parXLine1" class="textSettings" value="0" />
+                        </div>
 
-                    <div class="d1">
-                        <input type="radio" name="fun" id="x^2" class="checkSet" />
-                        <input type="text" id="parX1" class="textSettings" value="1" />
-                        <h4>x^2 +</h4>
-                        <input type="text" id="parX2" class="textSettings" value="0" />
-                        <h4>x +</h4>
-                        <input type="text" id="parX3" class="textSettings" value="0" />
-                    </div>
+                        <div class="d1">
+                            <input type="radio" name="fun" id="x^2" class="checkSet" />
+                            <input type="text" id="parX1" class="textSettings" value="1" />
+                            <h4>x^2 +</h4>
+                            <input type="text" id="parX2" class="textSettings" value="0" />
+                            <h4>x +</h4>
+                            <input type="text" id="parX3" class="textSettings" value="0" />
+                        </div>
 
-                    <div class="d1">
-                        <input type="radio" name="fun" id="1/x" class="checkSet" />
-                        <h4>1/x</h4>
-                    </div>
+                        <div class="d1">
+                            <input type="radio" name="fun" id="1/x" class="checkSet" />
+                            <h4>1/x</h4>
+                        </div>
 
-                    <div class="d1">
-                        <input type="radio" name="fun" id="sin(x)" class="checkSet" />
-                        <h4>sin(x)</h4>
-                    </div>
+                        <div class="d1">
+                            <input type="radio" name="fun" id="sin(x)" class="checkSet" />
+                            <h4>sin(x)</h4>
+                        </div>
 
-                    <div class="d1">
-                        <input type="radio" name="fun" id="self" class="checkSet" />
-                        <h4>Self</h4>
+                        <div class="d1">
+                            <input type="radio" name="fun" id="self" class="checkSet" />
+                            <h4>Self</h4>
+                        </div>
                     </div>
+                </div>
 
+                <div class="settingsNey set">
                     <div class="d1">
                         <h4>Step</h4>
                         <input type="text" class="textSettings" id="step" value="20" />
@@ -69,14 +72,15 @@
                         <button onclick="resetPoints();">Reset Points</button>
                     </div>
                 </div>
+                <div class="drawNey set">
+                    <canvas id="ney" width="400" height="300"></canvas>
+                </div>
             </div>
-            <canvas id="ney" width="400" height="300"></canvas>
         </div>
 
         <div id="main">
             <div class="fl">
                 <div class="fll">
-                    <!-- <span onclick="openNav();" class="openButton">open</span> -->
                     <button onclick="openNav();" class="openButton" id="openButton">
                         <i class="fa fa-bars"></i>
                     </button>
