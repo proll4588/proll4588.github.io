@@ -19,6 +19,7 @@ body {
     display: flex;
     align-items: flex-start;
     margin: 5px;
+    flex-wrap: wrap;
 }
 
 .set {
