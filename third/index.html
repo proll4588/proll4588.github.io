@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Net</title>
+        <script src="../ney scripts/ClassNey.js"></script>
+        <script src="../canvasDrawScripts/script.js"></script>
+    </head>
+    <body onload="setup();" style="margin: 0">
+        <script>
+            document.addEventListener("mousedown", (event) => {
+                mouseDown = true;
+                draw();
+            });
+
+            document.addEventListener("mouseup", (event) => {
+                mouseDown = false;
+            });
+
+            document.addEventListener("mousemove", (event) => {
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+                draw();
+            });
+        </script>
+        <canvas id="field" style="display: flex; justify-content: center"></canvas>
+        <button onclick="rePixel();">Test</button>
+        <button onclick="mind()">Mind</button>
+        <button onclick="lernNet()">Learn</button>
+        <button onclick="getAns()">Ans</button>
+    </body>
+    <script src="js/main.js"></script>
+</html>
