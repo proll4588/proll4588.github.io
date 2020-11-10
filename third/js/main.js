@@ -1,15 +1,15 @@
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");
 
-var height = 100;
-var width = 100;
+var height = 200;
+var width = 200;
 
 var mouseX;
 var mouseY;
 
-var r = 5;
+var r = 10;
 
-var grid = 5;
+var grid = 10;
 
 var mouseDown = false;
 
@@ -24,11 +24,13 @@ var toLearn = {
 
 var image;
 
+var ler = false;
+
 function setup() {
     canvas.width = width;
     canvas.height = height;
 
-    net = new NeyroNet([(height / grid) * (width / grid), 100, 10]);
+    net = new NeyroNet([(height / grid) * (width / grid), 200, 10]);
 
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.fillRect(0, 0, width, height);
@@ -58,7 +60,7 @@ function rePixel() {
             n++;
         }
 
-        if (n % 100 == 0 && k == 0) {
+        if (n % width == 0 && k == 0) {
             layer++;
             imageData[layer] = [];
         }
@@ -74,7 +76,7 @@ function rePixel() {
 
     var newImageData = [];
 
-    for (var i = 0; i < imageData.length / grid; i++) {
+    for (var i = 0; i < (imageData.length - 1) / grid; i++) {
         newImageData[i] = [];
         for (var j = 0; j < imageData[i * grid].length / grid; j++) {
             var col = 0;
@@ -123,7 +125,6 @@ function mind() {
     toLearn.input.push(inp);
     toLearn.output.push(outp);
 
-    iter++;
     console.log(iter);
 
     ctx.fillStyle = "rgb(0,0,0)";
@@ -135,6 +136,7 @@ function lernNet() {
     ctx.fillRect(0, 0, width, height);
     net.learn(3000, toLearn.input, toLearn.output);
     console.log("finish");
+    ler = true;
 }
 
 function getAns() {
@@ -161,6 +163,11 @@ function getAns() {
     console.log(c);
     console.log(maxIndex);
 
+    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.fillRect(0, 0, width, height);
+}
+
+function clearField() {
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.fillRect(0, 0, width, height);
 }

@@ -6,6 +6,11 @@
         <title>Net</title>
         <script src="../ney scripts/ClassNey.js"></script>
         <script src="../canvasDrawScripts/script.js"></script>
+        <style>
+            h5 {
+                margin: 0;
+            }
+        </style>
     </head>
     <body onload="setup();" style="margin: 0">
         <script>
@@ -24,11 +29,27 @@
                 draw();
             });
         </script>
-        <canvas id="field" style="display: flex; justify-content: center"></canvas>
+        <div class="line" style="display: flex">
+            <canvas id="field" style="display: flex; justify-content: center"></canvas>
+            <div class="raw">
+                <h5>0</h5>
+                <h5>1</h5>
+                <h5>2</h5>
+                <h5>3</h5>
+                <h5>4</h5>
+                <h5>5</h5>
+                <h5>6</h5>
+                <h5>7</h5>
+                <h5>8</h5>
+                <h5>9</h5>
+            </div>
+        </div>
         <button onclick="rePixel();">Test</button>
+        <button onclick="clearField();">Clear</button>
         <button onclick="mind()">Mind</button>
         <button onclick="lernNet()">Learn</button>
         <button onclick="getAns()">Ans</button>
+        <button onclick="iter++;">NextNum</button>
     </body>
     <script src="js/main.js"></script>
 </html>
