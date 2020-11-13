@@ -145,4 +145,32 @@ class NeyroNet {
 
         this.init();
     }
+
+    //Импорт сети
+    import(ney, w) {
+        for (var i = 0; i < this.neyConf.length; i++) {
+            this.ney[i] = [];
+            for (var j = 0; j < this.neyConf[i] + 1; j++) {
+                if (i + 1 == this.neyConf.length && j == this.neyConf[i]) {
+                    break;
+                }
+                this.ney[i][j] = ney[i][j];
+            }
+        }
+
+        for (var i = 0; i < this.neyConf.length - 1; i++) {
+            this.w[i] = [];
+            for (var j = 0; j < this.neyConf[i] + 1; j++) {
+                this.w[i][j] = [];
+                for (var k = 0; k < this.neyConf[i + 1]; k++) {
+                    this.w[i][j][k] = w[i][j][k];
+                }
+            }
+        }
+    }
+
+    //Экспорт сети
+    export() {
+        return { ney: this.ney, w: this.w };
+    }
 }
