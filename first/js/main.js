@@ -91,9 +91,9 @@ function drawField() {
     });
 }
 
+var step = 10;
 function drawNetField() {
     var par = 0.85;
-    var step = 10;
     for (var i = 0; i < width; i += step) {
         for (var j = 0; j < height; j += step) {
             var ans = net.count([i / width, j / height]);
@@ -123,3 +123,7 @@ function chek() {
         }
     }
 }
+
+// function setStep(params) {
+//     step = document.getElementsByName("step").value;
+// }
