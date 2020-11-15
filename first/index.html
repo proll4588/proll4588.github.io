@@ -5,23 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Ney</title>
         <script src="../ney scripts/ClassNey.js"></script>
-        <style>
-            * {
-                padding: 0;
-                margin: 0;
-            }
-
-            .d1,
-            .d2,
-            .d3 {
-                display: flex;
-            }
-
-            h5 {
-                margin: 0;
-                padding: 0;
-            }
-        </style>
+        <script src="../canvasDrawScripts/script.js"></script>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body onload="setup();">
         <script>
@@ -32,12 +17,32 @@
             });
         </script>
 
-        <div class="fl">
-            <canvas id="field" width="200" height="200"></canvas>
-        </div>
-        <script src="canvasDraw.js"></script>
+        <div class="wrapper">
+            <div class="settings" id="settings">
+                <div class="set">
+                    <input type="radio" name="color"/>
+                    <h5>red</h5>
+                </div>
 
-        <div class="d">
+                <div class="set">
+                    <input type="radio" name="color"/>
+                    <h5>white</h5>
+                </div>
+
+                <div class="set">
+                    <input type="radio" name="color"/>
+                    <h5>blue</h5>
+                </div>
+            </div>
+
+            <div class="field">
+                <canvas id="field" width="200" height="200"></canvas>
+            </div>
+        </div>
+        
+        <script src="js/main.js"></script>
+
+        <!-- <div class="d">
             <div class="d1">
                 <input type="radio" name="color" id="red" />
                 <h5>red</h5>
@@ -55,7 +60,7 @@
 
             <div class="d4">
                 <button onclick="net.reset();">Reset Net</button>
-            </div>
+            </div> -->
         </div>
     </body>
 </html>
