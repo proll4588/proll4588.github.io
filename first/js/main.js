@@ -22,7 +22,7 @@ var net;
 
 var type = 0;
 
-var startConf = [2, 5, 3];
+var startConf = [2, 7, 5, 3];
 
 function setup() {
     ctx.lineWidth = 4;

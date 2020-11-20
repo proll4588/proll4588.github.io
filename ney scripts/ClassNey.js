@@ -7,7 +7,7 @@ class NeyroNet {
         this.w = []; //Веса сети
         this.error = []; //Ошибки нейронов
 
-        this.cofStudy = 0.7; //Коэфицент обучения
+        this.cofStudy = 0.4; //Коэфицент обучения
 
         this.init();
     }
