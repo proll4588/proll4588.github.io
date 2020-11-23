@@ -31,7 +31,11 @@ class NeyroNet {
             for (var j = 0; j < this.neyConf[i] + 1; j++) {
                 this.w[i][j] = [];
                 for (var k = 0; k < this.neyConf[i + 1]; k++) {
-                    this.w[i][j][k] = Math.random();
+                    if (Math.random() < 0.5) {
+                        this.w[i][j][k] = Math.random() * -1;
+                    } else {
+                        this.w[i][j][k] = Math.random();
+                    }
                 }
             }
         }
@@ -131,7 +135,11 @@ class NeyroNet {
         for (var i = 0; i < this.neyConf.length - 1; i++) {
             for (var j = 0; j < this.neyConf[i] + 1; j++) {
                 for (var k = 0; k < this.neyConf[i + 1]; k++) {
-                    this.w[i][j][k] = Math.random();
+                    if (Math.random() < 0.5) {
+                        this.w[i][j][k] = Math.random() * -1;
+                    } else {
+                        this.w[i][j][k] = Math.random();
+                    }
                 }
             }
         }
@@ -147,26 +155,17 @@ class NeyroNet {
     }
 
     //Импорт сети
-    import(ney, w) {
-        for (var i = 0; i < this.neyConf.length; i++) {
-            this.ney[i] = [];
-            for (var j = 0; j < this.neyConf[i] + 1; j++) {
-                if (i + 1 == this.neyConf.length && j == this.neyConf[i]) {
-                    break;
-                }
-                this.ney[i][j] = ney[i][j];
-            }
-        }
-
-        for (var i = 0; i < this.neyConf.length - 1; i++) {
-            this.w[i] = [];
-            for (var j = 0; j < this.neyConf[i] + 1; j++) {
-                this.w[i][j] = [];
-                for (var k = 0; k < this.neyConf[i + 1]; k++) {
-                    this.w[i][j][k] = w[i][j][k];
-                }
-            }
-        }
+    import(w) {
+        this.w = w;
+        // for (var i = 0; i < this.neyConf.length - 1; i++) {
+        //     this.w[i] = [];
+        //     for (var j = 0; j < this.neyConf[i] + 1; j++) {
+        //         this.w[i][j] = [];
+        //         for (var k = 0; k < this.neyConf[i + 1]; k++) {
+        //             this.w[i][j][k] = w[i][j][k];
+        //         }
+        //     }
+        // }
     }
 
     //Экспорт сети

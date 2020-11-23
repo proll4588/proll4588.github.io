@@ -6,6 +6,7 @@
         <title>Net</title>
         <script src="../ney scripts/ClassNey.js"></script>
         <script src="../canvasDrawScripts/script.js"></script>
+        <script src="js/w.js"></script>
         <style>
             h5 {
                 margin: 0;
@@ -30,26 +31,19 @@
             });
         </script>
         <div class="line" style="display: flex">
-            <canvas id="field" style="display: flex; justify-content: center"></canvas>
-            <div class="raw">
-                <h5>0</h5>
-                <h5>1</h5>
-                <h5>2</h5>
-                <h5>3</h5>
-                <h5>4</h5>
-                <h5>5</h5>
-                <h5>6</h5>
-                <h5>7</h5>
-                <h5>8</h5>
-                <h5>9</h5>
-            </div>
+            <canvas id="field"></canvas>
+            <canvas id="ans"></canvas>
         </div>
-        <button onclick="rePixel();">Test</button>
+        <!-- <button onclick="rePixel();">Test</button> -->
         <button onclick="clearField();">Clear</button>
-        <button onclick="mind()">Mind</button>
-        <button onclick="lernNet()">Learn</button>
+        <!-- <button onclick="mind()">Mind</button>
+        <button onclick="lernNet()">Learn</button> -->
         <button onclick="getAns()">Ans</button>
-        <button onclick="iter++;">NextNum</button>
+        <!-- <button onclick="iter++;">NextNum</button> -->
+        <!-- <a id="link">Download</a>
+        <input type="file" onchange="importNet(this);" />
+        <input type="file" onchange="importLearn(this);" /> -->
     </body>
     <script src="js/main.js"></script>
+    <script src="js/drawAns.js"></script>
 </html>
