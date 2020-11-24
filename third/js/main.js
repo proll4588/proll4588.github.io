@@ -33,12 +33,12 @@ function setup() {
     net = new NeyroNet([(height / grid) * (width / grid), 100, 10]);
     net.import(ww);
 
-    console.log((height / grid) * (width / grid));
+    //console.log((height / grid) * (width / grid));
 
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.fillRect(0, 0, width, height);
 
-    console.log(iter);
+    //console.log(iter);
 }
 
 function draw() {
@@ -140,7 +140,7 @@ function lernNet() {
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.fillRect(0, 0, width, height);
     net.learn(100, toLearn.input, toLearn.output);
-    console.log("finish");
+    //console.log("finish");
     ler = true;
 }
 

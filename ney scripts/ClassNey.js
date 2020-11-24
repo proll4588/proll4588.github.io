@@ -157,15 +157,6 @@ class NeyroNet {
     //Импорт сети
     import(w) {
         this.w = w;
-        // for (var i = 0; i < this.neyConf.length - 1; i++) {
-        //     this.w[i] = [];
-        //     for (var j = 0; j < this.neyConf[i] + 1; j++) {
-        //         this.w[i][j] = [];
-        //         for (var k = 0; k < this.neyConf[i + 1]; k++) {
-        //             this.w[i][j][k] = w[i][j][k];
-        //         }
-        //     }
-        // }
     }
 
     //Экспорт сети
