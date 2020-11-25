@@ -4,15 +4,30 @@ var neyDraw = neyCanv.getContext("2d");
 neyCanv.width = 200;
 neyCanv.height = 200;
 
+var ansWidth = neyCanv.width;
+var ansHeight = neyCanv.height;
+
+var halfAnsWidth = ansWidth / 2;
+var halfAnsHeight = ansHeight / 2;
+
 function drawAns() {
-    ctx.clearRect(0, 0, neyCanv.width, neyCanv.height);
+    neyDraw.clearRect(0, 0, ansWidth, ansHeight);
 
-    ctx.strokeStyle = "rgb(100,49,49)";
-    ctx.fillStyle = "rgb(200,49,49)";
-    drawLine(halfWidth, 0, halfWidth, height, ctx);
-    drawLine(0, halfHeight, width, halfHeight, ctx);
+    neyDraw.font = `${ansHeight / 10}px Times New Roman`;
+    neyDraw.strokeStyle = "rgb(0,150,49)";
+    neyDraw.lineWidth = 20;
 
-    ctx.font = "30px Times New Roman";
-    ctx.fillText("y", halfWidth + 5, height - 10);
-    ctx.fillText("x", width - 20, halfHeight + 25);
+    for (var i = 0; i < 10; i++) {
+        drawLine(
+            0,
+            (i + 1) * (ansHeight / 10) - 6,
+            ans[i] * ansWidth,
+            (i + 1) * (ansHeight / 10) - 6,
+            neyDraw
+        );
+    }
+
+    for (var i = 0; i < 10; i++) {
+        neyDraw.fillText(`${i}`, 0, (i + 1) * (ansHeight / 10));
+    }
 }

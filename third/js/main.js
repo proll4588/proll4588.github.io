@@ -26,6 +26,8 @@ var image;
 
 var ler = false;
 
+var ans = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
 function setup() {
     canvas.width = width;
     canvas.height = height;
@@ -34,6 +36,7 @@ function setup() {
     net.import(ww);
 
     //console.log((height / grid) * (width / grid));
+    drawAns();
 
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.fillRect(0, 0, width, height);
@@ -46,6 +49,9 @@ function draw() {
         if (mouseDown) {
             ctx.fillStyle = "rgb(255,255,255)";
             drawCircul(mouseX, mouseY, r, ctx);
+
+            getAns();
+            drawAns();
         }
     }
 }
@@ -154,22 +160,22 @@ function getAns() {
         }
     }
 
-    var c = net.count(inp);
+    ans = net.count(inp);
 
-    var max = 0;
-    var maxIndex = 0;
-    for (var i = 0; i < c.length; i++) {
-        if (c[i] > max) {
-            max = c[i];
-            maxIndex = i;
-        }
-    }
+    // var max = 0;
+    // var maxIndex = 0;
+    // for (var i = 0; i < c.length; i++) {
+    //     if (c[i] > max) {
+    //         max = c[i];
+    //         maxIndex = i;
+    //     }
+    // }
 
-    console.log(c);
-    console.log(maxIndex);
+    //console.log(ans);
+    // console.log(maxIndex);
 
-    ctx.fillStyle = "rgb(0,0,0)";
-    ctx.fillRect(0, 0, width, height);
+    // ctx.fillStyle = "rgb(0,0,0)";
+    // ctx.fillRect(0, 0, width, height);
 }
 
 function clearField() {
