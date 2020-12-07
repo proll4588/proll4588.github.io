@@ -14,7 +14,8 @@ function drawAns() {
     neyDraw.clearRect(0, 0, ansWidth, ansHeight);
 
     neyDraw.font = `${ansHeight / 10}px Times New Roman`;
-    neyDraw.strokeStyle = "rgb(0,150,49)";
+    neyDraw.strokeStyle = "rgb(49,173,174)";
+    neyDraw.fillStyle = "rgb(253,239,199)";
     neyDraw.lineWidth = 20;
 
     for (var i = 0; i < 10; i++) {
@@ -25,9 +26,6 @@ function drawAns() {
             (i + 1) * (ansHeight / 10) - 6,
             neyDraw
         );
-    }
-
-    for (var i = 0; i < 10; i++) {
         neyDraw.fillText(`${i}`, 0, (i + 1) * (ansHeight / 10));
     }
 }

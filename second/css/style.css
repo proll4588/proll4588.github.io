@@ -7,6 +7,27 @@ body {
     background-color: #313131;
 }
 
+button {
+    border-radius: 5px;
+    background-color: rgb(253, 239, 199, 0);
+    border: #f07031 solid 2px;
+    color: rgb(253, 239, 199);
+    transition: 0.2s;
+    width: 150px;
+    height: 25px;
+    font-size: 15px;
+    outline: none;
+    margin: 1px;
+}
+
+button:hover {
+    background-color: #f07031;
+}
+
+input {
+    outline: none;
+}
+
 .d1 {
     display: flex;
     color: white;
@@ -14,8 +35,6 @@ body {
 }
 
 .settings {
-    /* height: 300px;
-    width: 400px; */
     display: flex;
     align-items: flex-start;
     margin: 5px;
@@ -32,12 +51,13 @@ body {
 .textSettings,
 .configSettings {
     width: 30px;
-    height: 15px;
+    height: 20px;
     background-color: #313131;
     border: 2px solid #f07031;
     border-radius: 5px;
     color: white;
     text-align: center;
+    margin-left: 5px;
 }
 
 .configSettings {
@@ -82,21 +102,23 @@ h4 {
     z-index: 5;
 }
 
-/* The side navigation menu */
-.sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: rgba(49, 49, 49, 0.7); /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+.openButton:hover {
+    background-color: rgb(253, 239, 199);
 }
 
-/* The navigation menu links */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(49, 49, 49, 0.7);
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -106,12 +128,10 @@ h4 {
     transition: 0.3s;
 }
 
-/* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
     color: #f1f1f1;
 }
 
-/* Position and style the close button (top right corner) */
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -137,13 +157,15 @@ h4 {
     border-color: rgb(253, 239, 199);
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+.closebtn:hover {
+    background-color: rgb(253, 239, 199);
+}
+
 #main {
     transition: margin-left 0.5s;
     /* padding: 20px; */
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;

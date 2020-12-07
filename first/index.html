@@ -1,47 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Ney</title>
+
         <script src="../ney scripts/ClassNey.js"></script>
         <script src="../canvasDrawScripts/script.js"></script>
-        <link rel="stylesheet" href="css/style.css">
+        <script src="js/events.js"></script>
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body onload="setup();">
-        <script>
-            document.addEventListener("mousedown", (event) => setPoint());
-            document.addEventListener("mousemove", (event) => {
-                mouseX = event.pageX;
-                mouseY = event.pageY;
-            });
-        </script>
-
         <div class="wrapper">
             <div class="settings" id="settings">
                 <div class="set">
-                    <input type="radio" name="color"/>
+                    <input type="radio" name="color" />
                     <h5>red</h5>
                 </div>
 
                 <div class="set">
-                    <input type="radio" name="color"/>
+                    <input type="radio" name="color" />
                     <h5>white</h5>
                 </div>
 
                 <div class="set">
-                    <input type="radio" name="color"/>
+                    <input type="radio" name="color" />
                     <h5>blue</h5>
                 </div>
-                
             </div>
 
             <div class="field">
                 <canvas id="field" width="200" height="200"></canvas>
             </div>
         </div>
-        
         <script src="js/main.js"></script>
-        </div>
     </body>
 </html>

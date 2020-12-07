@@ -2,12 +2,14 @@
 var inputLearn = [];
 var outputLearn = [];
 
+//Координаты точек
 var pointsOnMap = [];
 
 //Окно для рислвание
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");
 
+//Задание размеров окна
 canvas.width = document.documentElement.clientWidth;
 canvas.height = document.documentElement.clientHeight;
 
@@ -18,12 +20,19 @@ var height = canvas.height;
 //Координаты мыши
 var mouseX, mouseY;
 
+//Сеть
 var net;
 
+//Тип точки
 var type = 0;
 
+//Начальная конфигурация сети
 var startConf = [2, 7, 5, 3];
 
+//Размер пиксеря
+var step = 10;
+
+//Инициализция
 function setup() {
     ctx.lineWidth = 4;
 
@@ -32,6 +41,7 @@ function setup() {
     window.requestAnimationFrame(draw);
 }
 
+//Создание точки
 function setPoint() {
     if (
         mouseX < document.getElementById("settings").offsetWidth &&
@@ -61,10 +71,11 @@ function setPoint() {
     }
 }
 
+//Главная функция
 function draw() {
     net.learn(1, inputLearn, outputLearn);
 
-    chek(0);
+    chek();
 
     ctx.clearRect(0, 0, width, height);
 
@@ -73,6 +84,7 @@ function draw() {
     window.requestAnimationFrame(draw);
 }
 
+//Отрисовка поля
 function drawField() {
     drawNetField();
     pointsOnMap.forEach((point) => {
@@ -91,7 +103,7 @@ function drawField() {
     });
 }
 
-var step = 10;
+//Отрисовка разделяющих линий
 function drawNetField() {
     var par = 0.85;
     for (var i = 0; i < width; i += step) {
@@ -114,6 +126,7 @@ function drawNetField() {
     }
 }
 
+//Задание типа точки
 function chek() {
     var bt = document.getElementsByName("color");
 
@@ -123,7 +136,3 @@ function chek() {
         }
     }
 }
-
-// function setStep(params) {
-//     step = document.getElementsByName("step").value;
-// }

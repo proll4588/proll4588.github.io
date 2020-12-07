@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>Aprocsimation fun</title>
+        <title>Аппроксимация функций</title>
 
         <link rel="stylesheet" href="css/style.css" />
 
@@ -17,60 +17,77 @@
 
     <body onload="setup();">
         <div id="mySidenav" class="sidenav">
-            <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
             <button class="closebtn" onclick="closeNav();"><i class="fas fa-times"></i></button>
             <div class="settings">
                 <div class="settingsFun set">
                     <div class="d">
-                        <div class="d1">
-                            <input type="radio" name="fun" id="x" class="checkSet" />
-                            <input type="text" id="parXLine" class="textSettings" value="1" />
-                            <h4>x +</h4>
-                            <input type="text" id="parXLine1" class="textSettings" value="0" />
-                        </div>
+                        <div class="d1" style="display: flex; flex-direction: column">
+                            <div>
+                                <h3>Функции</h3>
+                            </div>
+                            <div>
+                                <div
+                                    class="buttons_claster"
+                                    style="display: flex; flex-direction: column"
+                                >
+                                    <button onclick="setFun('x');" class="bt1">x</button>
+                                    <button onclick="setFun('-x*x*0.005')" class="bt2">x^2</button>
+                                    <button onclick="setFun('10000/x')" class="bt3">1/x</button>
+                                    <button
+                                        onclick="setFun('Math.sin(x * 0.01) * 100')"
+                                        class="bt4"
+                                    >
+                                        sin(x)
+                                    </button>
+                                    <!-- <input type="button" onclick="setFun('x');" value="x" />
+                                    <input
+                                        type="button"
+                                        onclick="setFun('-x*x*0.005')"
+                                        value="x^2"
+                                    />
+                                    <input type="button" onclick="setFun('10000/x')" value="1/x" />
+                                    <input
+                                        type="button"
+                                        onclick="setFun('Math.sin(x * 0.01) * 100')"
+                                        value="sin(x)"
+                                    /> -->
+                                </div>
 
-                        <div class="d1">
-                            <input type="radio" name="fun" id="x^2" class="checkSet" />
-                            <input type="text" id="parX1" class="textSettings" value="1" />
-                            <h4>x^2 +</h4>
-                            <input type="text" id="parX2" class="textSettings" value="0" />
-                            <h4>x +</h4>
-                            <input type="text" id="parX3" class="textSettings" value="0" />
-                        </div>
-
-                        <div class="d1">
-                            <input type="radio" name="fun" id="1/x" class="checkSet" />
-                            <h4>1/x</h4>
-                        </div>
-
-                        <div class="d1">
-                            <input type="radio" name="fun" id="sin(x)" class="checkSet" />
-                            <h4>sin(x)</h4>
-                        </div>
-
-                        <div class="d1">
-                            <input type="radio" name="fun" id="self" class="checkSet" />
-                            <h4>Self</h4>
+                                <!-- <h5>
+                                    y =
+                                    <input
+                                        type="text"
+                                        name="fun"
+                                        id="fun"
+                                        class="textSettings"
+                                        value="x"
+                                        style="width: 100px"
+                                    />
+                                </h5>
+                                <button onclick="setFun();">Задать</button> -->
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="settingsNey set">
+                    <div>
+                        <h3 style="color: white">Настройки</h3>
+                    </div>
                     <div class="d1">
-                        <h4>Step</h4>
+                        <h4>Шаг</h4>
                         <input type="text" class="textSettings" id="step" value="20" />
                     </div>
 
                     <div class="d1">
-                        <h4>Config</h4>
+                        <h4>Конфиг сети</h4>
                         <input type="text" class="configSettings" id="config" value="[3, 3]" />
-                        <button onclick="resetNey();">Set</button>
+                        <button onclick="resetNey();" style="width: 45px">Set</button>
                     </div>
 
                     <div class="d1">
-                        <button onclick="setFun();">Set fun</button>
-                        <button onclick="net.reset();">Reset Net</button>
-                        <button onclick="resetPoints();">Reset Points</button>
+                        <button onclick="setFun();" style="width: 70px">Задать</button>
+                        <button onclick="net.reset();">Сбросить сеть</button>
                     </div>
                 </div>
                 <div class="drawNey set">

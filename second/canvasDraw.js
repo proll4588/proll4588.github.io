@@ -26,9 +26,9 @@ var netCords = [];
 
 var net;
 
-var type = 0;
-
 var startConf = [1, 3, 1];
+
+var fun = "x";
 
 function setup() {
     net = new NeyroNet(startConf);
@@ -57,63 +57,16 @@ function formedLeranData() {
     var inm = [];
     var outm = [];
 
-    switch (type) {
-        case 0:
-            for (var x = -halfWidth; x < halfWidth; x += 10) {
-                var y =
-                    x * Number(document.getElementById("parXLine").value) +
-                    Number(document.getElementById("parXLine1").value);
-                if (y + halfHeight < height) {
-                    inm.push([(x + halfWidth) / width]);
-                    outm.push([(y + halfHeight) / height]);
-                }
-            }
-            break;
+    for (var x = -halfWidth; x < halfWidth; x += 10) {
+        var y = eval(fun);
+        if (!isFinite(y)) {
+            continue;
+        }
 
-        case 1:
-            for (var x = -halfWidth; x < halfWidth; x += 10) {
-                var y = Math.round(
-                    Math.pow(x, 2) * 0.01 * Number(document.getElementById("parX1").value) +
-                        Number(document.getElementById("parX2").value) * x +
-                        Number(document.getElementById("parX3").value)
-                );
-                if (y + halfHeight < height && y + halfHeight >= 0) {
-                    inm.push([(x + halfWidth) / width]);
-                    outm.push([(y + halfHeight) / height]);
-                }
-            }
-            break;
-
-        case 2:
-            for (var x = -halfWidth; x < halfWidth; x += 10) {
-                if (x == 0) continue;
-                var y = Math.round(5000 / x);
-                if (y + halfWidth < height) {
-                    inm.push([(x + halfWidth) / width]);
-                    outm.push([(y + halfHeight) / height]);
-                }
-            }
-            break;
-
-        case 3:
-            for (var x = -halfWidth; x < halfWidth; x += 5) {
-                var y = Math.round(Math.sin(x * 0.01) * 100);
-                if (y + halfHeight < height) {
-                    inm.push([(x + halfWidth) / width]);
-                    outm.push([(y + halfHeight) / height]);
-                }
-            }
-            break;
-
-        case 4:
-            for (var i = 0; i < pointsOnMap.length; i++) {
-                inm.push([pointsOnMap[i][0] / width]);
-                outm.push([pointsOnMap[i][1] / height]);
-            }
-            break;
-
-        default:
-            break;
+        if (y + halfHeight < height && y + halfHeight >= 0) {
+            inm.push([(x + halfWidth) / width]);
+            outm.push([(y + halfHeight) / height]);
+        }
     }
 
     inputLearn = inm;
@@ -131,16 +84,9 @@ function draw() {
     window.requestAnimationFrame(draw);
 }
 
-function setFun() {
-    var bt = document.getElementsByName("fun");
+function setFun(val = "x") {
+    fun = val;
 
-    for (var i = 0; i < bt.length; i++) {
-        if (bt[i].checked) {
-            type = i;
-        }
-    }
-
-    //formedLeranData();
     net.reset();
 }
 
@@ -157,60 +103,16 @@ function drawFun() {
     }
 
     formedLeranData();
-    //console.log(step);
 
-    switch (type) {
-        case 0:
-            for (var x = -halfWidth; x < halfWidth; x += step) {
-                var y =
-                    x * Number(document.getElementById("parXLine").value) +
-                    Number(document.getElementById("parXLine1").value);
-                if (y + halfHeight < height && y + halfHeight >= 0) {
-                    funCords.push([x + halfWidth, y + halfHeight]);
-                }
-            }
-            break;
+    for (var x = -halfWidth; x < halfWidth; x += step) {
+        var y = eval(fun);
+        if (!isFinite(y)) {
+            continue;
+        }
 
-        case 1:
-            for (var x = -halfWidth; x < halfWidth; x += step) {
-                var y = Math.round(
-                    Math.pow(x, 2) * 0.01 * Number(document.getElementById("parX1").value) +
-                        Number(document.getElementById("parX2").value) * x +
-                        Number(document.getElementById("parX3").value)
-                );
-                if (y + halfHeight < height && y + halfHeight >= 0) {
-                    funCords.push([x + halfWidth, y + halfHeight]);
-                }
-            }
-            break;
-
-        case 2:
-            for (var x = -halfWidth; x < halfWidth; x += step) {
-                if (x == 0) continue;
-                var y = Math.round(5000 / x);
-                if (y + halfHeight < height && y + halfHeight > 0) {
-                    funCords.push([x + halfWidth, y + halfHeight]);
-                }
-            }
-            break;
-
-        case 3:
-            for (var x = -halfWidth; x < halfWidth; x += step) {
-                var y = Math.round(Math.sin(x * 0.01) * 100);
-                if (y + halfHeight < height && y + halfHeight > 0) {
-                    funCords.push([x + halfWidth, y + halfHeight]);
-                }
-            }
-            break;
-
-        case 4:
-            for (var i = 0; i < pointsOnMap.length; i++) {
-                funCords[i] = pointsOnMap[i];
-            }
-            break;
-
-        default:
-            break;
+        if (y + halfHeight < height && y + halfHeight >= 0) {
+            funCords.push([x + halfWidth, y + halfHeight]);
+        }
     }
 
     ctx.strokeStyle = "rgb(252,78,81)";
